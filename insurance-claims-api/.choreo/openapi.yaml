@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: Insurance Claims Processing API
+  version: 1.0.0
+paths:
+  /claims:
+    post:
+      summary: Submit a new claim
+      operationId: submitClaim
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                policyId:
+                  type: string
+                amount:
+                  type: number
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Claim created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  customerId:
+                    type: string
+                  policyId:
+                    type: string
+                  amount:
+                    type: number
+                  description:
+                    type: string
+
+  /claims/{claimId}:
+    get:
+      summary: Retrieve details of a specific claim
+      operationId: getClaim
+      parameters:
+        - name: claimId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Claim details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  customerId:
+                    type: string
+                  policyId:
+                    type: string
+                  amount:
+                    type: number
+                  description:
+                    type: string
+        '404':
+          description: Claim not found
+
+  /claims/{claimId}/status:
+    put:
+      summary: Update the status of a claim
+      operationId: updateClaimStatus
+      parameters:
+        - name: claimId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Claim status updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+        '404':
+          description: Claim not found
+
+  /customers/{customerId}/claims:
+    get:
+      summary: Retrieve all claims for a customer
+      operationId: getCustomerClaims
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer claims
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    status:
+                      type: string
+                    customerId:
+                      type: string
+                    policyId:
+                      type: string
+                    amount:
+                      type: number
+                    description:
+                      type: string
+
+  /claims/{claimId}/notify:
+    post:
+      summary: Notify customer about claim status change
+      operationId: notifyCustomer
+      parameters:
+        - name: claimId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer notified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Claim not found

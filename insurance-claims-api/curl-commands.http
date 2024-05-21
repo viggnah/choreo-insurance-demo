@@ -1,0 +1,16 @@
+curl -X POST http://localhost:3000/api/claims -H "Content-Type: application/json" -d '{"customerId": "cust123", "policyId": "pol123", "amount": 5000, "description": "Accident damage"}'
+
+###
+curl http://localhost:3000/api/claims/e3c95921-64a3-4f32-a898-b13b991dd18d
+
+
+###
+curl -X PUT http://localhost:3000/api/claims/e3c95921-64a3-4f32-a898-b13b991dd18d/status -H "Content-Type: application/json" -d '{"status": "approved"}'
+
+
+###
+curl http://localhost:3000/api/customers/cust123/claims
+
+
+###
+curl -X POST http://localhost:3000/api/claims/e3c95921-64a3-4f32-a898-b13b991dd18d/notify
