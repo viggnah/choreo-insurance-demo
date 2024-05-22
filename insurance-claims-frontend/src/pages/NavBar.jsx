@@ -70,11 +70,17 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {
-                            // decodedToken.roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
+                            // decodedToken.application_roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
                             // <Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >
                         }
-                        <Nav.Link as={Link} to="/submitClaim">Submit Claim</Nav.Link >
-                        <Nav.Link as={Link} to="/getClaimStatus">Claim Status</Nav.Link >
+                        {
+                            decodedToken.application_roles && decodedToken.application_roles.indexOf('submit-claims') !== -1 && 
+                            <Nav.Link as={Link} to="/submitClaim">Submit Claim</Nav.Link >
+                        }
+                        {
+                            decodedToken.application_roles && decodedToken.application_roles.indexOf('read-claims') !== -1 && 
+                            <Nav.Link as={Link} to="/getClaimStatus">Claim Status</Nav.Link >
+                        }
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
