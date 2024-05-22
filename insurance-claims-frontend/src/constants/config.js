@@ -5,7 +5,7 @@ export const AsgardeoConfig = {
     signInRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
     // signOutRedirectURL: 'http://localhost:3001',
     signOutRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
-    scope: ['openid', 'profile', 'groups', 'roles', 'app_roles']
+    scope: ['openid', 'profile', 'groups', 'roles', 'app_roles', 'submit-claims', 'read-claims']
 };
 
 
