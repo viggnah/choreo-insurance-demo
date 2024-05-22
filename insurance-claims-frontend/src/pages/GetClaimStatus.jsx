@@ -3,7 +3,7 @@ import { Col, Container, Form, Row, Button, Table, Alert } from "react-bootstrap
 import { useEffect, useState } from "react";
 import { Hosts, AccessToken } from "../constants/config";
 
-const AcctAndTxns = () => {
+const GetClaimStatus = () => {
     const [claimDetails, setClaimDetails] = useState(null);
     const [claimId, setClaimId] = useState('');
 
@@ -11,12 +11,12 @@ const AcctAndTxns = () => {
     const APIM_ACCT_HOST = Hosts.apimAcctHost;
     const MI_TXN_HOST = Hosts.miTxnHost;
     const APIM_TXN_HOST = Hosts.apimTxnHost;
-    const NODE_BACKEND_HOST = Hosts.nodeBackendHost;
+    const CHOREO_BACKEND_HOST = Hosts.choreoBackendHost;
 
     const headers = {
         headers: {
-            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            Authorization: `Bearer ${AccessToken}`,
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+            // Authorization: `Bearer ${AccessToken}`,
             Accept: 'application/json'
         }
     };
@@ -24,7 +24,7 @@ const AcctAndTxns = () => {
     const handleClaimRetrieve = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(`/api/claims/${claimId}`);
+            const response = await axios.get(CHOREO_BACKEND_HOST + `/claims/${claimId}`, headers);
             setClaimDetails(response.data);
         } catch (error) {
             console.error('There was an error retrieving the claim!', error);
@@ -73,4 +73,4 @@ const AcctAndTxns = () => {
     );
 };
 
-export default AcctAndTxns;
+export default GetClaimStatus;

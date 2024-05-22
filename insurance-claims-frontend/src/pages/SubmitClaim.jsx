@@ -3,7 +3,7 @@ import { Col, Container, Form, Row, Button, Table, Alert } from "react-bootstrap
 import { useEffect, useState } from "react";
 import { Hosts, AccessToken } from "../constants/config";
 
-const AcctAndTxns = () => {
+const SubmitClaim = () => {
     const [claimData, setClaimData] = useState({
         customerId: '',
         policyId: '',
@@ -20,8 +20,8 @@ const AcctAndTxns = () => {
 
     const headers = {
         headers: {
-            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            Authorization: `Bearer ${AccessToken}`,
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+            // Authorization: `Bearer ${AccessToken}`,
             Accept: 'application/json'
         }
     };
@@ -29,9 +29,8 @@ const AcctAndTxns = () => {
     const handleClaimSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(CHOREO_BACKEND_HOST + '/claims', claimData);
+            const response = await axios.post(CHOREO_BACKEND_HOST + '/claims', claimData, headers);
             setClaimDetails(response.data);
-            // alert(`Claim submitted with ID: ${response.data.id}`);
             setClaimData({ customerId: '', policyId: '', amount: '', description: '' });
         } catch (error) {
             console.error('There was an error submitting the claim!', error);
@@ -103,4 +102,4 @@ const AcctAndTxns = () => {
     );
 };
 
-export default AcctAndTxns;
+export default SubmitClaim;
