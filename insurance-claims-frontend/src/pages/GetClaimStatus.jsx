@@ -7,16 +7,12 @@ const GetClaimStatus = () => {
     const [claimDetails, setClaimDetails] = useState(null);
     const [claimId, setClaimId] = useState('');
 
-    const MI_ACCT_HOST = Hosts.miAcctHost;
-    const APIM_ACCT_HOST = Hosts.apimAcctHost;
-    const MI_TXN_HOST = Hosts.miTxnHost;
-    const APIM_TXN_HOST = Hosts.apimTxnHost;
     const CHOREO_BACKEND_HOST = Hosts.choreoBackendHost;
+    const NODE_BACKEND_HOST = Hosts.nodeBackendHost;
 
     const headers = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            // Authorization: `Bearer ${AccessToken}`,
             Accept: 'application/json'
         }
     };
