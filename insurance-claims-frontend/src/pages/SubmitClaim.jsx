@@ -16,7 +16,7 @@ const AcctAndTxns = () => {
     const APIM_ACCT_HOST = Hosts.apimAcctHost;
     const MI_TXN_HOST = Hosts.miTxnHost;
     const APIM_TXN_HOST = Hosts.apimTxnHost;
-    const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : "/";
+    const CHOREO_BACKEND_HOST = Hosts.choreoBackendHost;
 
     const headers = {
         headers: {
@@ -29,7 +29,7 @@ const AcctAndTxns = () => {
     const handleClaimSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(apiUrl + '/api/claims', claimData);
+            const response = await axios.post(CHOREO_BACKEND_HOST + '/api/claims', claimData);
             setClaimDetails(response.data);
             // alert(`Claim submitted with ID: ${response.data.id}`);
             setClaimData({ customerId: '', policyId: '', amount: '', description: '' });

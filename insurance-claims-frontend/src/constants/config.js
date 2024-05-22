@@ -12,6 +12,7 @@ export const AsgardeoConfig = {
 // Service Host and Port
 export const Hosts = {
     nodeBackendHost: "http://localhost:3000",
+    choreoBackendHost: "https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/insuranceclaims/v1.0",
     miAcctHost: "http://localhost:8290/account/",
     apimAcctHost: "https://localhost:8300/account/1.0.0/",
     miTxnHost: "http://localhost:8290/transaction/",
