@@ -1,5 +1,6 @@
 export const AsgardeoConfig = {
     clientID: 'kijZfyncfVZsNtYR6vt4aHFM3osa',
+    // clientID: 'KJsUpohw5Vi9jJYY7mTGfZrxvJ4a',
     baseUrl: 'https://api.asgardeo.io/t/viggnah',
     // signInRedirectURL: 'http://localhost:3001',
     signInRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',

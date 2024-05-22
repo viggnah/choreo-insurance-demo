@@ -59,9 +59,8 @@ const logout = signOut => {
 };
 
 const Navigation = () => {
-
-    const [decodedToken, setDecodedToken] = useState({});
-    decodedToken = localStorage.getItem('decodedId');
+    const [decodedToken, setDecodedToken] = useState(localStorage.getItem('decodedId'));
+    const { state } = useAuthContext();
 
     return (
         <Navbar bg="light" expand="lg">
@@ -71,15 +70,11 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {
-                            // decodedToken.application_roles && decodedToken.roles.indexOf('view_accts_and_txns') !== -1 && 
-                            // <Nav.Link as={Link} to="/acctandtxns">Acct & Txns</Nav.Link >
-                        }
-                        {
-                            decodedToken.application_roles && decodedToken.application_roles.indexOf('submit-claims') !== -1 && 
+                            state?.allowedScopes?.split(' ').includes('submit-claims') &&
                             <Nav.Link as={Link} to="/submitClaim">Submit Claim</Nav.Link >
                         }
                         {
-                            decodedToken.application_roles && decodedToken.application_roles.indexOf('read-claims') !== -1 && 
+                            state?.allowedScopes?.split(' ').includes('read-claims') &&
                             <Nav.Link as={Link} to="/getClaimStatus">Claim Status</Nav.Link >
                         }
                     </Nav>
