@@ -61,6 +61,7 @@ const logout = signOut => {
 const Navigation = () => {
 
     const [decodedToken, setDecodedToken] = useState({});
+    decodedToken = localStorage.getItem('decodedId');
 
     return (
         <Navbar bg="light" expand="lg">
