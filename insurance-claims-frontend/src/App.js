@@ -1,7 +1,6 @@
 import Navigation from "./pages/NavBar";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home";
-import AcctAndTxns from "./pages/AcctAndTxns";
 import SubmitClaim from "./pages/SubmitClaim";
 import GetClaimStatus from "./pages/GetClaimStatus";
 import { AuthProvider } from "@asgardeo/auth-react";
