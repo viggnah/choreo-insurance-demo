@@ -1,9 +1,11 @@
 export const AsgardeoConfig = {
-    clientID: '',
+    clientID: 'kijZfyncfVZsNtYR6vt4aHFM3osa',
     baseUrl: 'https://api.asgardeo.io/t/viggnah',
-    signInRedirectURL: 'http://localhost:3001',
-    signOutRedirectURL: 'http://localhost:3001',
-    scope: ['openid', 'profile', 'groups', 'roles']
+    // signInRedirectURL: 'http://localhost:3001',
+    signInRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
+    // signOutRedirectURL: 'http://localhost:3001',
+    signOutRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
+    scope: ['openid', 'profile', 'groups', 'roles', 'app_roles']
 };
 
 
