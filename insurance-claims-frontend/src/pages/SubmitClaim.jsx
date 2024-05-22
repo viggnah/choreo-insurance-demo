@@ -29,7 +29,7 @@ const AcctAndTxns = () => {
     const handleClaimSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(CHOREO_BACKEND_HOST + '/api/claims', claimData);
+            const response = await axios.post(CHOREO_BACKEND_HOST + '/claims', claimData);
             setClaimDetails(response.data);
             // alert(`Claim submitted with ID: ${response.data.id}`);
             setClaimData({ customerId: '', policyId: '', amount: '', description: '' });
