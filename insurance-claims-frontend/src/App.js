@@ -4,12 +4,11 @@ import Home from "./pages/Home";
 import SubmitClaim from "./pages/SubmitClaim";
 import GetClaimStatus from "./pages/GetClaimStatus";
 import { AuthProvider } from "@asgardeo/auth-react";
-import { AsgardeoConfig } from "./constants/config";
 
 function App() {
   return (
     <div className="App">
-      <AuthProvider config={AsgardeoConfig} >
+      <AuthProvider config={window.configs.asgardeoConfig} >
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"

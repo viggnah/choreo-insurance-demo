@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Col, Container, Form, Row, Button, Table, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { Hosts, AccessToken } from "../constants/config";
 
 const SubmitClaim = () => {
     const [claimData, setClaimData] = useState({
@@ -12,15 +11,12 @@ const SubmitClaim = () => {
     });
     const [claimDetails, setClaimDetails] = useState(null);
 
-    const CHOREO_BACKEND_HOST = Hosts.choreoBackendHost;
-    const NODE_BACKEND_HOST = Hosts.nodeBackendHost;
-    const BACKEND_HOST = window?.configs?.hosts?.choreoBackendHost ? window.configs.hosts.choreoBackendHost : NODE_BACKEND_HOST;
-
+    const BACKEND_HOST = window.configs.hosts.backendHost;
 
     const headers = {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            // Authorization: `Bearer ${AccessToken}`,
+            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+            Authorization: `Bearer ${window.configs.accessToken}`,
             Accept: 'application/json'
         }
     };

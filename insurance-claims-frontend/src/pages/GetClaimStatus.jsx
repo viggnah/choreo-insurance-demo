@@ -1,18 +1,17 @@
 import axios from "axios";
 import { Col, Container, Form, Row, Button, Table, Alert } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { Hosts, AccessToken } from "../constants/config";
 
 const GetClaimStatus = () => {
     const [claimDetails, setClaimDetails] = useState(null);
     const [claimId, setClaimId] = useState('');
 
-    const CHOREO_BACKEND_HOST = Hosts.choreoBackendHost;
-    const NODE_BACKEND_HOST = Hosts.nodeBackendHost;
+    const BACKEND_HOST = window.configs.hosts.backendHost;
 
     const headers = {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            Authorization: `Bearer ${window.configs.accessToken}`,
             Accept: 'application/json'
         }
     };
@@ -20,7 +19,7 @@ const GetClaimStatus = () => {
     const handleClaimRetrieve = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(CHOREO_BACKEND_HOST + `/claims/${claimId}`, headers);
+            const response = await axios.get(BACKEND_HOST + `/claims/${claimId}`, headers);
             setClaimDetails(response.data);
         } catch (error) {
             console.error('There was an error retrieving the claim!', error);
