@@ -14,6 +14,8 @@ const SubmitClaim = () => {
 
     const CHOREO_BACKEND_HOST = Hosts.choreoBackendHost;
     const NODE_BACKEND_HOST = Hosts.nodeBackendHost;
+    const BACKEND_HOST = window?.configs?.hosts?.choreoBackendHost ? window.configs.hosts.choreoBackendHost : NODE_BACKEND_HOST;
+
 
     const headers = {
         headers: {
@@ -26,7 +28,7 @@ const SubmitClaim = () => {
     const handleClaimSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(NODE_BACKEND_HOST + '/claims', claimData, headers);
+            const response = await axios.post(BACKEND_HOST + '/claims', claimData, headers);
             setClaimDetails(response.data);
             setClaimData({ customerId: '', policyId: '', amount: '', description: '' });
         } catch (error) {

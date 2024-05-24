@@ -45,7 +45,7 @@ const LoginStatusBar = props => {
             </div>
         );
     } else {
-        // return <></>
+        return <></>
         return <Nav.Link onClick={() => signIn()}>Login</Nav.Link>
     }
 }
@@ -70,11 +70,11 @@ const Navigation = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         {
-                            state?.allowedScopes?.split(' ').includes('submit-claims') &&
+                            // state?.allowedScopes?.split(' ').includes('submit-claims') &&
                             <Nav.Link as={Link} to="/submitClaim">Submit Claim</Nav.Link >
                         }
                         {
-                            state?.allowedScopes?.split(' ').includes('read-claims') &&
+                            // state?.allowedScopes?.split(' ').includes('read-claims') &&
                             <Nav.Link as={Link} to="/getClaimStatus">Claim Status</Nav.Link >
                         }
                     </Nav>
