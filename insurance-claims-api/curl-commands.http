@@ -1,5 +1,7 @@
-@claimID = 244b39dc-78f4-4c22-93a3-7900ce1ec872
+### Local Insurance Claims API calls without security
+@claimIDLocal = 
 
+###
 curl -X POST 
 http://localhost:3000/api/claims 
 -H "Content-Type: application/json" 
@@ -7,13 +9,12 @@ http://localhost:3000/api/claims
 
 ###
 curl 
-http://localhost:3000/api/claims/{{claimID}}
+http://localhost:3000/api/claims/{{claimIDLocal}}
 
 
 ###
-curl 
--X PUT 
-http://localhost:3000/api/claims/{{claimID}}/status 
+curl -X PUT 
+http://localhost:3000/api/claims/{{claimIDLocal}}/status 
 -H "Content-Type: application/json" 
 -d '{"status": "approved"}'
 
@@ -24,6 +25,54 @@ http://localhost:3000/api/customers/cust123/claims
 
 
 ###
+curl -X POST 
+http://localhost:3000/api/claims/{{claimIDLocal}}/notify
+
+
+
+
+
+
+### Choreo Insurance Claims API Call with security
+@token = 
+@claimIDChoreo = 
+
+###
+curl -X POST 
+https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/insuranceclaims/v1.0/claims \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer {{token}}" \
+-d '{"customerId": "cust123", "policyId": "pol123", "amount": 5000, "description": "Accident damage"}'
+
+
+###
 curl 
--X POST 
-http://localhost:3000/api/claims/{{claimID}}/notify
+https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/insuranceclaims/v1.0/claims/{{claimIDChoreo}} \
+-H "Authorization: Bearer {{token}}"
+
+
+###
+curl -X PUT 
+https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/insuranceclaims/v1.0/claims/{{claimIDChoreo}}/status \
+-H "Authorization: Bearer {{token}}" \
+-H "Content-Type: application/json" \
+-d '{"status": "approved"}'
+
+
+
+
+
+
+
+### Asgardeo call to get access token manually
+@asgardeoCode = 
+
+### Have to put this on browswer address bar and login and get the "code" (asgardeoCode)
+https://api.asgardeo.io/t/viggnah/oauth2/authorize?response_type=code&client_id=kijZfyncfVZsNtYR6vt4aHFM3osa&redirect_uri=https://localhost:5000&scope=email,openid,profile,groups,roles,app_roles,submit-claims,read-claims
+
+###
+curl https://api.asgardeo.io/t/viggnah/oauth2/token \
+ -d grant_type=authorization_code \
+ -d client_id=kijZfyncfVZsNtYR6vt4aHFM3osa \
+ -d redirect_uri=https://localhost:5000  \
+ -d code={{asgardeoCode}}
