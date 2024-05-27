@@ -37,6 +37,9 @@ http://localhost:3000/api/claims/{{claimIDLocal}}/notify
 ### Expose localhost API on Internet so we can create "API Proxy" in Choreo and use security
 ssh -R 80:localhost:3000 nokey@localhost.run
 
+### Use the API endpoint like the below, remember to append `api/`
+https://cbce32909e666b.lhr.life/api/
+
 
 
 

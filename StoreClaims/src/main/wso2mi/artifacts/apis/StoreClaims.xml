@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/storeclaims" name="StoreClaims" xmlns="http://ws.apache.org/ns/synapse">
+	<resource methods="POST" uri-template="/">
+		<inSequence>
+			<propertyGroup>
+				<property name="claimInsuranceAPIEP" scope="default" type="STRING" expression="json-eval($.claimInsuranceAPIEP)" action="set" description="0"/>
+				<property name="claimId" scope="default" type="STRING" expression="json-eval($.claimId)" action="set" description="0"/>
+			</propertyGroup>
+			<log category="INFO" level="custom" separator=" &amp;gt;&amp;gt;&amp;gt; ">
+				<property name="claimInsuranceAPIEP" expression="json-eval($.claimInsuranceAPIEP)"/>
+			</log>
+			<property name="uri.var.getClaimEP" scope="default" type="STRING" expression="fn:concat(get-property('claimInsuranceAPIEP'), '/claims/', get-property('claimId'))"/>
+			<call>
+				<endpoint key="ClaimInsuranceAPIEP"/>
+			</call>
+			<log category="INFO" level="custom">
+				<property name="AccessToken" expression="get-property('env', 'AccessToken')"/>
+			</log>
+			 <payloadFactory media-type="json">
+                <format>{"values": [["$1", "$2", "$3", "$4", "$5", "$6"]]}</format>
+                <args>
+					<arg evaluator="json" expression="$.id"/>
+					<arg evaluator="json" expression="$.status"/>
+					<arg evaluator="json" expression="$.customerId"/>
+					<arg evaluator="json" expression="$.policyId"/>
+					<arg evaluator="json" expression="$.amount"/>
+					<arg evaluator="json" expression="$.description"/>
+				</args>
+			</payloadFactory>
+			<property name="values" scope="default" type="STRING" expression="json-eval($.values)"/>
+			<googlespreadsheet.init>
+				<accessToken>get-property('env', 'AccessToken')</accessToken>
+				<apiUrl>https://sheets.googleapis.com/v4/spreadsheets</apiUrl>
+				<clientId>get-property('env', 'ClientId')</clientId>
+				<clientSecret>get-property('env', 'ClientSecret')</clientSecret>
+				<refreshToken>get-property('env', 'RefreshToken')</refreshToken>
+			</googlespreadsheet.init>
+			<googlespreadsheet.addRowsColumnsData>
+				<spreadsheetId>get-property('env', 'spreadSheetId')</spreadsheetId>
+				<range>Sheet1</range>
+				<insertDataOption>INSERT_ROWS</insertDataOption>
+				<valueInputOption>RAW</valueInputOption>
+				<majorDimension>ROWS</majorDimension>
+				<values>{$ctx:values}</values>
+			</googlespreadsheet.addRowsColumnsData> 
+			<respond/>
+		</inSequence>
+		<faultSequence>
+		</faultSequence>
+	</resource>
+</api>
