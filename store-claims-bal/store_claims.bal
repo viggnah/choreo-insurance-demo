@@ -11,7 +11,7 @@ type ClaimData record {|
     string status;
     string customerId;
     string policyId;
-    float amount;
+    string|float amount;
     string description;
 |};
 

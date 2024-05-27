@@ -77,6 +77,10 @@ const Navigation = () => {
                             // state?.allowedScopes?.split(' ').includes('read-claims') &&
                             <Nav.Link as={Link} to="/getClaimStatus">Claim Status</Nav.Link >
                         }
+                        {
+                            // state?.allowedScopes?.split(' ').includes('record-claims') &&
+                            <Nav.Link as={Link} to="/recordClaim">Record Claim</Nav.Link >
+                        }
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">

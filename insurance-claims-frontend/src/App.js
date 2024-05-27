@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home";
 import SubmitClaim from "./pages/SubmitClaim";
 import GetClaimStatus from "./pages/GetClaimStatus";
+import RecordClaim from "./pages/RecordClaims";
 import { AuthProvider } from "@asgardeo/auth-react";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Home />} ></Route>
             <Route path="/submitClaim" element={<SubmitClaim />} ></Route>
             <Route path="/getClaimStatus" element={<GetClaimStatus />} ></Route>
+            <Route path="/recordClaim" element={<RecordClaim />} ></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
