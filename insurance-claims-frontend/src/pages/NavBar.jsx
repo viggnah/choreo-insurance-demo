@@ -79,7 +79,7 @@ const Navigation = () => {
                         }
                         {
                             // state?.allowedScopes?.split(' ').includes('record-claims') &&
-                            <Nav.Link as={Link} to="/recordClaim">Record Claim</Nav.Link >
+                            // <Nav.Link as={Link} to="/recordClaim">Record Claim</Nav.Link >
                         }
                     </Nav>
                 </Navbar.Collapse>
