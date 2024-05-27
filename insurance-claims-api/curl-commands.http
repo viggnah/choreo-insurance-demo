@@ -29,6 +29,9 @@ curl -X POST
 http://localhost:3000/api/claims/{{claimIDLocal}}/notify
 
 
+###
+curl -X POST http://localhost:8080/storeclaims -H "Content-Type: application/json" -d '{"claimId": @{{claimIDLocal}}}'
+
 
 
 

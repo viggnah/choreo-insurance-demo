@@ -8,7 +8,7 @@ const RecordClaim = () => {
         claimId: ''
     });
 
-    const BACKEND_HOST = window.configs.hosts.backendHost;
+    const BACKEND_HOST_BAL = window.configs.hosts.backendHostBal;
 
     const headers = {
         headers: {
@@ -21,7 +21,7 @@ const RecordClaim = () => {
     const handleClaimRecord = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(BACKEND_HOST + `/storeclaims`, claimIdData, headers);
+            const response = await axios.post(BACKEND_HOST_BAL + `/storeclaims`, claimIdData, headers);
             setClaimDetails(response.data);
         } catch (error) {
             console.error('There was an error retrieving the claim!', error);
