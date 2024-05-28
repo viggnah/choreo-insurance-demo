@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const GetClaimStatus = () => {
     const [claimDetails, setClaimDetails] = useState(null);
     const [claimId, setClaimId] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const BACKEND_HOST = window.configs.hosts.backendHost;
 
@@ -18,9 +19,17 @@ const GetClaimStatus = () => {
 
     const handleClaimRetrieve = async (e) => {
         e.preventDefault();
+        setClaimDetails(null);
+        setErrorMsg('');
         try {
-            const response = await axios.get(BACKEND_HOST + `/claims/${claimId}`, headers);
-            setClaimDetails(response.data);
+            await axios.get(BACKEND_HOST + `/claims/${claimId}`, headers).then(response => {
+                setClaimDetails(response.data);
+            }).catch(error => {
+                if (error.response.status === 429 || error.response.status === 403 || error.response.status === 401 || error.response.status === 404) {
+                    setErrorMsg([{ ERROR: error.response.data }]);
+                }
+            });
+
         } catch (error) {
             console.error('There was an error retrieving the claim!', error);
         }
@@ -58,6 +67,16 @@ const GetClaimStatus = () => {
                                     <p><strong>Policy ID:</strong> {claimDetails.policyId}</p>
                                     <p><strong>Amount:</strong> {claimDetails.amount}</p>
                                     <p><strong>Description:</strong> {claimDetails.description}</p>
+                                </div>
+                            </div>
+                        )}
+                        {errorMsg && (
+                            <div className="card">
+                                <div className="card-header">
+                                    Claim Details
+                                </div>
+                                <div className="card-body">
+                                    <pre>{JSON.stringify(errorMsg, null, 4)}</pre>
                                 </div>
                             </div>
                         )}
