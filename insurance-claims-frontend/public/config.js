@@ -4,7 +4,7 @@ window.configs = {
         // backendHost: 'http://localhost:3000',
         backendHost: 'https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/insuranceclaims/v1.0',
         // backendHostBal: 'http://localhost:8080'
-        backendHostBal: 'https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/store-claims-api-ballerina/v1.0',
+        backendHostBal: 'https://b48cc93e-fa33-4420-a155-bc653b4d46be-dev.e1-us-east-azure.choreoapis.dev/brkz/demo-ballerina-store-claims-api/v1.0',
     },
     asgardeoConfig: {
         clientID: 'kijZfyncfVZsNtYR6vt4aHFM3osa',

@@ -27,6 +27,15 @@ sheets:Client spreadsheetClient = check new (spreadsheetConfig);
 
 listener http:Listener httpListener = new (8080);
 
+@http:ServiceConfig {
+    cors: {
+        allowOrigins: ["*"],
+        allowCredentials: false,
+        allowHeaders: ["CORELATION_ID"],
+        exposeHeaders: ["X-CUSTOM-HEADER"],
+        maxAge: 84900
+    }
+}
 service /storeclaims on httpListener {
     resource function post .(ClaimIdData claimIdData) returns error|http:Created {
         http:Client insuranceClaimClient = check new (os:getEnv("INSURANCE_CLAIM_API_EP"));
