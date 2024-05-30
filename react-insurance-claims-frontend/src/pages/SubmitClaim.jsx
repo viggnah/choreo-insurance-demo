@@ -15,8 +15,8 @@ const SubmitClaim = () => {
 
     const headers = {
         headers: {
-            // Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
-            Authorization: `Bearer ${window.configs.accessToken}`,
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, 
+            // Authorization: `Bearer ${window.configs.accessToken}`,
             Accept: 'application/json'
         }
     };

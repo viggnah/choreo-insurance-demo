@@ -8,13 +8,12 @@ window.configs = {
     },
     asgardeoConfig: {
         clientID: 'kijZfyncfVZsNtYR6vt4aHFM3osa',
-        // clientID: 'KJsUpohw5Vi9jJYY7mTGfZrxvJ4a',
         baseUrl: 'https://api.asgardeo.io/t/viggnah',
-        signInRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
-        // signInRedirectURL: 'http://localhost:3001',
-        signOutRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
-        // signOutRedirectURL: 'http://localhost:3001',
-        scope: ['openid', 'profile', 'groups', 'roles', 'app_roles', 'submit-claims', 'read-claims']
+        // signInRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
+        signInRedirectURL: 'http://localhost:3000',
+        // signOutRedirectURL: 'https://14f77ed5-1da5-47fc-b623-a5fff369b50c.e1-us-east-azure.choreoapps.dev',
+        signOutRedirectURL: 'http://localhost:3000',
+        scope: ['openid', 'profile', 'submit-claims', 'read-claims']
     },
     accessToken: ''
 };
